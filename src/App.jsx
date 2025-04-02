@@ -8,9 +8,9 @@ const App = () => {
   return (
     <>
       <HomePage />
-      <HomePageUser />
+      {/* <HomePageUser />
       <HomePageAdmin />
-      <OwnerPage />
+      <OwnerPage /> */}
     </>
   );
 };
