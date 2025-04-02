@@ -12,14 +12,17 @@ const HomePageAdmin = () => {
     lastname: "",
     position: "",
   });
+  const [loading, setLoading] = useState(true);
 
   const fetchUsers = async () => {
+    setLoading(true);
     try {
       const response = await axios.get("https://jsd5-mock-backend.onrender.com/members");
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching users!", error);
     } finally {
+      setLoading(false);
       console.log("Fetch users attempt finished");
     }
   };
@@ -30,8 +33,10 @@ const HomePageAdmin = () => {
         const response = await axios.post("https://jsd5-mock-backend.onrender.com/members", newUser);
         setUsers((prevUsers) => [...prevUsers, response.data]);
         setNewUser({ name: "", lastname: "", position: "" });
+        alert("User added successfully.");
       } catch (error) {
         console.error("Error adding user!", error);
+        alert("Error adding user.");
       } finally {
         console.log("Add user attempt finished");
       }
@@ -41,19 +46,39 @@ const HomePageAdmin = () => {
   };
 
   const deleteUser = async (userId) => {
+    console.log("Attempting to delete user with ID:", userId);
+    if (!userId) {
+      console.error("User ID not found for deletion.");
+      return;
+    }
+  
     try {
-      await axios.delete(`https://jsd5-mock-backend.onrender.com/members/${userId}`);
-      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+      const response = await axios.delete(
+        `https://jsd5-mock-backend.onrender.com/member/${userId}`
+      );
+      if (response.status === 200) {
+        console.log("Deletion successful:", response.data);
+        setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+        alert("User deleted successfully.");
+      } else {
+        console.error("Error deleting user:", response);
+        alert("Failed to delete user.");
+      }
     } catch (error) {
-      console.error("Error deleting user!", error);
+      console.error("Error deleting user:", error);
+      alert("Failed to delete user.");
     } finally {
-      console.log("Delete user attempt finished");
+      console.log("Delete user attempt finished.");
     }
   };
 
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container">
