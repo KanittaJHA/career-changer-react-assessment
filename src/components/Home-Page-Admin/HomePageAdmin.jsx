@@ -15,26 +15,25 @@ const HomePageAdmin = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(
-        "https://jsd5-mock-backend.onrender.com/members"
-      );
+      const response = await axios.get("https://jsd5-mock-backend.onrender.com/members");
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching users!", error);
+    } finally {
+      console.log("Fetch users attempt finished");
     }
   };
 
   const addUser = async () => {
     if (newUser.name && newUser.lastname && newUser.position) {
       try {
-        const response = await axios.post(
-          "https://jsd5-mock-backend.onrender.com/members",
-          newUser
-        );
-        setUsers([...users, response.data]);
+        const response = await axios.post("https://jsd5-mock-backend.onrender.com/members", newUser);
+        setUsers((prevUsers) => [...prevUsers, response.data]);
         setNewUser({ name: "", lastname: "", position: "" });
       } catch (error) {
         console.error("Error adding user!", error);
+      } finally {
+        console.log("Add user attempt finished");
       }
     } else {
       alert("Please fill out all fields.");
@@ -42,14 +41,13 @@ const HomePageAdmin = () => {
   };
 
   const deleteUser = async (userId) => {
-    // console.log("Trying to delete user with ID:", userId); 
-  
     try {
-      const response = await axios.delete(`https://jsd5-mock-backend.onrender.com/members/${userId}`);
-      console.log("Delete response:", response);
+      await axios.delete(`https://jsd5-mock-backend.onrender.com/members/${userId}`);
       setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
     } catch (error) {
-      console.error("Error deleting user!", error.response?.data || error);
+      console.error("Error deleting user!", error);
+    } finally {
+      console.log("Delete user attempt finished");
     }
   };
 
@@ -65,7 +63,7 @@ const HomePageAdmin = () => {
       </div>
 
       <div className="main">
-        <h1>Generation Thailand Home - Admin Sector</h1>
+        <h1>Generation Thailand Home - Admin Section</h1>
 
         <div className="buttons">
           <button onClick={() => navigate("/user")}>User Home Section</button>
@@ -79,27 +77,20 @@ const HomePageAdmin = () => {
               type="text"
               placeholder="First Name"
               value={newUser.name}
-              onChange={(e) =>
-                setNewUser({ ...newUser, name: e.target.value })
-              }
+              onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
             />
             <input
               type="text"
               placeholder="Last Name"
               value={newUser.lastname}
-              onChange={(e) =>
-                setNewUser({ ...newUser, lastname: e.target.value })
-              }
+              onChange={(e) => setNewUser({ ...newUser, lastname: e.target.value })}
             />
             <input
               type="text"
               placeholder="Position"
               value={newUser.position}
-              onChange={(e) =>
-                setNewUser({ ...newUser, position: e.target.value })
-              }
+              onChange={(e) => setNewUser({ ...newUser, position: e.target.value })}
             />
-
             <div className="input-btn">
               <button onClick={addUser}>Save</button>
             </div>

@@ -1,15 +1,53 @@
+.owner-page {
+    background-image: url(../../assets/spacex.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh; /* เพิ่มความสูงเต็มหน้าจอ */
+    margin: 0;
+    padding: 0;  /* ลบ padding ถ้ามี */
+}
+
+.owner-page .nav {
+    margin: 0 32px;
+    border-color: #ffffff;
+}
+
+.owner-page .nav .link {
+    color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.owner-page .nav .link:hover {
+    color: aqua;
+}
+
+.owner-page .main h1 {
+    color: #ffffff;
+}
+
 .main img {
-    width: 250px;
-    margin-top: 24px;
+    width: 300px;
+    margin-top: 40px;
+    border-radius: 12px;
 }
 
 .main .biography {
-    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 40px;
     text-align: center;
-    color: #111111;
+    color: #ffffff;
 }
 
 .main .biography p:first-child {
     font-weight: 600;
-    margin-bottom: 24px;
+    margin-bottom: 40px;
+}
+
+.main .biography p:last-child {
+    width: 60%;
 }

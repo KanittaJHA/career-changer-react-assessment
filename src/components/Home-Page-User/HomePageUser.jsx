@@ -20,6 +20,8 @@ const HomePageUser = () => {
     } catch (error) {
       setError("Error fetching data");
       setLoading(false);
+    } finally {
+      console.log("Fetch members attempt finished");
     }
   };
 
@@ -35,7 +37,7 @@ const HomePageUser = () => {
       </div>
 
       <div className="main">
-        <h1>Generation Thailand Home - User Sector</h1>
+        <h1>Generation Thailand Home - User Section</h1>
 
         <div className="buttons">
           <button onClick={() => navigate("/user")}>User Home Section</button>
