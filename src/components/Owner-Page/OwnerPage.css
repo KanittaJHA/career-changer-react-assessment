@@ -1,0 +1,15 @@
+.main img {
+    width: 250px;
+    margin-top: 24px;
+}
+
+.main .biography {
+    margin-top: 24px;
+    text-align: center;
+    color: #111111;
+}
+
+.main .biography p:first-child {
+    font-weight: 600;
+    margin-bottom: 24px;
+}

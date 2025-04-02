@@ -1,0 +1,46 @@
+.create-users {
+    margin-top: 32px;
+}
+
+.user-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 20px;
+}
+
+.user-input input {
+    padding: 12px 10px;
+    width: 300px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #111111;
+}
+
+.input-btn button {
+    padding: 12px 16px;
+    background-color: #0048ff;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.input-btn button:hover {
+    background-color: #002279;
+}
+
+table td {
+    text-align: center;
+}
+
+table td span {
+    color: red;
+    cursor: pointer;
+}
+
+table td span:hover {
+    text-decoration: underline;
+}
